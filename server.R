@@ -9,13 +9,7 @@
 
 library(shiny)
 
-dat<-as.matrix(read.table(text="15
-                 1
-                 2.5
-                 6.5
-                 5
-                 5
-                 5"))
+dat<-matrix(c(15, 1, 2.5 ,6.5 , 5, 5, 5), ncol = 1, nrow = 7)
 
 shinyServer(function(input, output) {
   output$user_data <- renderText({
