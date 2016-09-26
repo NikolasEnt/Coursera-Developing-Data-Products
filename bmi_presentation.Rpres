@@ -1,0 +1,65 @@
+Body Mass Index (BMI) Calculator
+========================================================
+author: by Nikolay Falaleev
+date: 25/09/2016
+autosize: true
+transition: rotate
+Course Project: Shiny Application and Reproducible Pitch
+
+MOOC Peer Graded Assignment: Coursera Developing Data Products
+
+Overview
+========================================================
+
+The goal of the project was to create a simple Body Mass Index (BMI) Calculator.
+
+The BMI is an attempt to quantify the amount of tissue mass (muscle, fat, and bone) in an individual, and then categorize that person as underweight, normal weight, overweight, or obese based on that value.
+
+```{r, echo=FALSE}
+latexImg = function(latex){
+
+    link = paste0('http://latex.codecogs.com/gif.latex?',
+           gsub('\\=','%3D',URLencode(latex)))
+
+    link = gsub("(%..)","\\U\\1",link,perl=TRUE)
+    return(paste0('![](',link,')'))
+}
+
+```
+`r latexImg('BMI = \\frac{mass}{height^2}')`
+
+Mass should be in kg, height in m. Your mass and height should be provided as input by two sliders.
+
+[The app itself on the shiny server](https://nikolasent.shinyapps.io/bmi1/)
+
+Calculations
+========================================================
+Calculations and rounding performed by the a simple code. Here we convert cm into m by dividing by 100.
+```{r, eval=FALSE}
+bmi = round(mass/(height/100)^2, 1)
+```
+The following code is used to plot the calculated BMI as compered to [Categories](https://en.wikipedia.org/wiki/Body_mass_index#Categories). Green area is a normal BMI.
+```{r, eval=FALSE}
+dat<-matrix(c(15, 1, 2.5 ,6.5 , 5, 5, 5), ncol = 1, nrow = 7)
+barplot(dat, horiz = TRUE, yaxt="n", xlab = "BMI", main="Your BMI", col=c("darkred", "red", "orange", "green", "orange", "red", "darkred", "brown")); lines(x=c(21, 21), y=c(0,1.2), col="blue", lwd=4)
+```
+
+
+
+Plot
+========================================================
+This example represents BMI=21.
+
+```{r, echo=FALSE}
+dat<-matrix(c(15, 1, 2.5 ,6.5 , 5, 5, 5), ncol = 1, nrow = 7)
+barplot(dat, horiz = TRUE, yaxt="n", xlab = "BMI", main="Your BMI", col=c("darkred", "red", "orange", "green", "orange", "red", "darkred", "brown")); lines(x=c(21, 21), y=c(0,1.2), col="blue", lwd=4)
+```
+
+Links
+========================================================
+
+[The Source code for the project](https://github.com/NikolasEnt/Coursera-Developing-Data-Products)
+
+[The app itself on the Shiny server](https://nikolasent.shinyapps.io/bmi1/)
+
+More about the BMI Categories on [Wikipedia](https://en.wikipedia.org/wiki/Body_mass_index#Categories)
